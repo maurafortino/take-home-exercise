@@ -21,8 +21,9 @@ const App = () => {
         );
         setProducts(response.data);
         console.log("Products loaded:", response.data);
-      } else if (query || value) {
-        throw Error("must have a query param and value");
+      } else if (query) {
+        const response = await axios.get(`${BASE_API_URL}/products/scores`);
+        console.log(response.data);
       } else {
         const response = await axios.get(`${BASE_API_URL}/products`);
         setProducts(response.data);
@@ -34,10 +35,15 @@ const App = () => {
   };
 
   const handleButton = (e) => {
+    e.preventDefault();
     const param = e.target.value;
     fetchProducts("characteristic", param);
   };
 
+  const handleSecondButton = (e) => {
+    e.preventDefault();
+    fetchProducts("scores");
+  };
   return (
     <div className="App">
       <header className="header">
@@ -62,6 +68,7 @@ const App = () => {
       <button onClick={handleButton} value="humane">
         Click Me
       </button>
+      <button onClick={handleSecondButton}>Click!</button>
     </div>
   );
 };
