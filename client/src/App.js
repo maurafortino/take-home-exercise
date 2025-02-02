@@ -10,18 +10,33 @@ const App = () => {
   // This initial data fetch is just to verify your setup is working.
   // Feel free to modify or remove it as you build your solution.
   useEffect(() => {
-    const fetchProducts = async () => {
-      try {
-        const response = await axios.get(`${BASE_API_URL}/products`);
-        setProducts(response.data);
-        console.log('Products loaded:', response.data);
-      } catch (error) {
-        console.error("Error fetching products:", error);
-      }
-    };
-
     fetchProducts();
   }, []);
+
+  const fetchProducts = async (query, value) => {
+    try {
+      if (query && value) {
+        const response = await axios.get(
+          `${BASE_API_URL}/products?${query}=${value}`
+        );
+        setProducts(response.data);
+        console.log("Products loaded:", response.data);
+      } else if (query || value) {
+        throw Error("must have a query param and value");
+      } else {
+        const response = await axios.get(`${BASE_API_URL}/products`);
+        setProducts(response.data);
+        console.log("Products loaded:", response.data);
+      }
+    } catch (error) {
+      console.error("Error fetching products:", error);
+    }
+  };
+
+  const handleButton = (e) => {
+    const param = e.target.value;
+    fetchProducts("characteristic", param);
+  };
 
   return (
     <div className="App">
@@ -29,7 +44,8 @@ const App = () => {
         <h1>Product Compass</h1>
       </header>
       <div className="setup-message">
-        ✅ If you're seeing the list of products below, everything is up and running!
+        ✅ If you're seeing the list of products below, everything is up and
+        running!
       </div>
       <div>
         {products.map((product, index) => (
@@ -43,6 +59,9 @@ const App = () => {
           </div>
         ))}
       </div>
+      <button onClick={handleButton} value="humane">
+        Click Me
+      </button>
     </div>
   );
 };
