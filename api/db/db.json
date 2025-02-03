@@ -2,27 +2,33 @@
   "products": [
     {
       "name": "Sprockets",
-      "characteristics": ["Plastic-Free", "Locally Produced"]
+      "characteristics": ["Plastic-Free", "Locally Produced"],
+      "id": "dcea"
     },
     {
       "name": "Cogs",
-      "characteristics": ["Plastic-Free", "Wasteful"]
+      "characteristics": ["Plastic-Free", "Wasteful"],
+      "id": "0f8f"
     },
     {
       "name": "Face Cream",
-      "characteristics": ["Humane", "Vegan", "Locally Produced"]
+      "characteristics": ["Humane", "Vegan", "Locally Produced"],
+      "id": "9880"
     },
     {
       "name": "Muskers",
-      "characteristics": ["Wasteful", "Unhealthy"]
+      "characteristics": ["Wasteful", "Unhealthy"],
+      "id": "5015"
     },
     {
       "name": "Hand Sanitizer",
-      "characteristics": ["Vegan", "Humane"]
+      "characteristics": ["Vegan", "Humane"],
+      "id": "04dd"
     },
     {
       "name": "Lettuce",
-      "characteristics": ["Vegan", "Humane", "Healthy"]
+      "characteristics": ["Vegan", "Humane", "Healthy"],
+      "id": "0219"
     }
   ]
 }
