@@ -6,8 +6,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFilter } from "@fortawesome/free-solid-svg-icons";
 import Product from "./components/Product";
 import { Container, Alert } from "react-bootstrap";
-import Loading from "./components/Loading";
-import ErrorPage from "./components/Error";
+import LoadingPage from "./pages/LoadingPage";
+import ErrorPage from "./pages/ErrorPage";
 
 const BASE_API_URL = "http://localhost:3005";
 
@@ -54,22 +54,19 @@ const App = () => {
         );
         setProducts(response.data);
         setIsLoading(false);
-        console.log("Products loaded:", response.data);
       } else if (query) {
         <Alert variant="primary">
           You must include parameters with your query
         </Alert>;
-        console.error("Must include and query param and value");
+        console.error("Must include and query param and value"); //future todo: instead of console.log error  using observability tool
       } else {
         const response = await axios.get(`${BASE_API_URL}/products/scores`);
         setProducts(response.data);
         setIsLoading(false);
-        console.log("Products loaded:", response.data);
       }
     } catch (error) {
       setErrMessage(error.message);
-      console.error("Error fetching products:", error);
-      //Future TODO: collect error metrics and send error to observabilitu tool
+      console.error("Error fetching products:", error); //future todo: instead of console.log error  using observability tool
     }
   };
 
@@ -110,7 +107,7 @@ const App = () => {
       {!errMessage && (
         <>
           <h1>Product Compass</h1>
-          {isLoading && <Loading />}
+          {isLoading && <LoadingPage />}
           {!isLoading && (
             <>
               <div>
@@ -127,7 +124,7 @@ const App = () => {
               {products.length > 0 ? (
                 <div className="grid">
                   {products.map((product) => (
-                    <Product product={product} key={product.value} />
+                    <Product product={product} key={product.id} />
                   ))}
                 </div>
               ) : (

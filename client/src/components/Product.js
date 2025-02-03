@@ -9,8 +9,8 @@ export function Product({ product }) {
       <Card.Body>
         <Card.Title>{product.product.name} </Card.Title>
         <Card.Subtitle>Score: {product.score}</Card.Subtitle>
-        {product.product.characteristics.map((char, charIndex) => (
-          <Badge key={charIndex} bg="secondary" className="characteristic-tag">
+        {product.product.characteristics.map((char) => (
+          <Badge key={char} bg="secondary" className="characteristic-tag">
             {char}
           </Badge>
         ))}

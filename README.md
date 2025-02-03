@@ -1,83 +1,5 @@
 # Full-Stack Engineering Take-Home Exercise
 
-👋 Hello from Berry Street!
-
-Thanks for taking the time to work on our coding exercise. We've designed this to be an engaging way for you to show us how you think about building products that make a difference. Don't worry too much about getting everything perfect - we're more interested in seeing your approach and thought process.
-
-**Time Expectation:** While we suggest spending 3-4 hours on core requirements, feel free to invest more time if you're excited about additional features or improvements that showcase your product thinking. We appreciate your enthusiasm, but also value your time - so no pressure to go overboard!
-
-## Overview
-
-This is a full-stack application built with Node.js/Express backend and React frontend. The backend includes a mock API (powered by `json-server`) that simulates a product catalog service.
-
-### Product Thinking Opportunity
-
-We encourage you to think beyond just the technical implementation. This exercise is intentionally open-ended to allow you to:
-
-- Make thoughtful product decisions about the user experience
-- Fill in any gaps in the requirements based on reasonable assumptions
-- Add features that you think would benefit the end user
-- Document your product decisions and their rationale
-- Consider real-world scenarios and edge cases
-
-Strong submissions often go beyond the basic requirements to create a more complete and polished product experience. Feel free to:
-
-- Enhance the UI/UX with additional features that make sense
-- Add helpful product metadata or functionality
-- Improve error messaging and user feedback
-- Consider accessibility and internationalization
-- Add data visualizations or analytics features
-- Implement any other features you think would be valuable
-
-Just be sure to document your choices and reasoning in your submission.
-
-### Data Structure
-
-Products have the following structure:
-
-```json
-{
-  "id": "string",
-  "name": "string",
-  "characteristics": ["string"] // e.g., ["Humane", "Locally Produced", "Healthy"]
-}
-```
-
-Available characteristics: "Humane", "Locally Produced", "Healthy", "Plastic-Free", "Unhealthy", "Wasteful", "Vegan"
-
-## Tasks
-
-### Backend (Express API)
-
-1. Implement a route that filters products by characteristic:
-
-   - Endpoint: GET `/products?characteristic=value` ✅
-   - Should efficiently handle multiple concurrent requests
-   - Consider caching strategies for performance ✅
-
-2. Create a product scoring system:
-   - Endpoint: GET `/products/scores` ✅
-   - Scoring rules:
-     - +1: "Humane", "Locally Produced", "Healthy" ✅
-     - +2: "Plastic-Free" ✅
-     - -1: "Unhealthy", "Wasteful" ✅
-   - Return products with their calculated scores ✅
-   - Optimize for performance at scale
-
-### Frontend (React)
-
-3. Build a responsive product grid:
-
-   - Display products in a 3-column layout ✅
-   - Show product name and score ✅
-   - Implement loading states ✅
-   - Handle error cases ✅
-
-4. [Bonus] Add characteristic filtering:
-   - Create a UI for selecting multiple characteristics ✅
-   - Update the product grid based on selected filters ✅
-   - Maintain a clean and intuitive user experience ✅
-
 ## Setup Instructions
 
 ### Prerequisites
@@ -165,17 +87,54 @@ Available characteristics: "Humane", "Locally Produced", "Healthy", "Plastic-Fre
 - JSON Server: 4000
 - React App: 3000
 
-## Submission Instructions
+## Design Decisions
 
-1. Fork this repository to your own GitHub account
-2. Make your changes in your forked repository
-3. Update the README with:
-   - Setup instructions
-   - Your design decisions
-   - Performance considerations
-   - What you would do differently with more time
-4. Email the link to your forked repository to blake@berrystreet.co
-   - Ensure your forked repository is public
+1. Components
+   a. Filter Menu
+
+- wanted to hide the filter menu when users are looking at results so that they can see results easier
+- chose checkboxes so users could choose multiple characteristics
+- when users click on Filter Products it will show, when the click on it again it will disapear
+- future consideration: hide the filter menu again after user clicks filter products
+
+  b. Filter
+
+  - separated out from the filter menu so that a checkbox could be rendered for each filter item
+    -future consideration: moving the characteristics arr to a DB and preloading array for better performance and make code cleaner when filter options become larger
+
+  c. Product
+
+  - added a product component to render each product separateley - this allows for more products to be added seamlessly
+
+2. Bootstrap for css
+
+- went with Bootstrap as I'm most familiar with the Bootstrap framework
+- it's easy to implement and quickly make a clean UI
+- Cards keep items contained and easy to read
+- future TODO: make grid more responsive to different size grids
+
+3. fetchProductsWithScores in products.js
+
+- added this as middleware so as both requests require the score to be added to the product so that users can see the score
+
+4. Node-cache
+
+- chose node-cache for the caching option for simplicity and ease of use
+- future consideration: use Redis for better scalability
+
+## Performance Considerations
+
+- How to get state of components more localized - currently passing down from App
+- consider using a CDN for products, especially if users are only reading from DB
+
+## Future Considerations
+
+1. Pagination of the products for faster reqs, especially with more data
+2. Make paginated requests run in parallel
+3. Add observability tool to track error messages and responses statuses
+4. UI is pretty bare bones - would enhance it to make it stand out more
+5. Add page buttons to UI for pagination
+6. Making a HomePage component so I can move some of the state and logic to that to make App.js cleaner
 
 ## Troubleshooting
 
