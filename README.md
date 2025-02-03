@@ -1,6 +1,6 @@
 # Full-Stack Engineering Take-Home Exercise
 
-👋 Hello from Berry Street! 
+👋 Hello from Berry Street!
 
 Thanks for taking the time to work on our coding exercise. We've designed this to be an engaging way for you to show us how you think about building products that make a difference. Don't worry too much about getting everything perfect - we're more interested in seeing your approach and thought process.
 
@@ -34,11 +34,12 @@ Just be sure to document your choices and reasoning in your submission.
 ### Data Structure
 
 Products have the following structure:
+
 ```json
 {
   "id": "string",
   "name": "string",
-  "characteristics": ["string"]  // e.g., ["Humane", "Locally Produced", "Healthy"]
+  "characteristics": ["string"] // e.g., ["Humane", "Locally Produced", "Healthy"]
 }
 ```
 
@@ -49,35 +50,38 @@ Available characteristics: "Humane", "Locally Produced", "Healthy", "Plastic-Fre
 ### Backend (Express API)
 
 1. Implement a route that filters products by characteristic:
-   - Endpoint: GET `/products?characteristic=value`
+
+   - Endpoint: GET `/products?characteristic=value` ✅
    - Should efficiently handle multiple concurrent requests
-   - Consider caching strategies for performance
+   - Consider caching strategies for performance ✅
 
 2. Create a product scoring system:
-   - Endpoint: GET `/products/scores`
+   - Endpoint: GET `/products/scores` ✅
    - Scoring rules:
-     - +1: "Humane", "Locally Produced", "Healthy"
-     - +2: "Plastic-Free"
-     - -1: "Unhealthy", "Wasteful"
-   - Return products with their calculated scores
+     - +1: "Humane", "Locally Produced", "Healthy" ✅
+     - +2: "Plastic-Free" ✅
+     - -1: "Unhealthy", "Wasteful" ✅
+   - Return products with their calculated scores ✅
    - Optimize for performance at scale
 
 ### Frontend (React)
 
 3. Build a responsive product grid:
-   - Display products in a 3-column layout
-   - Show product name and score
-   - Implement loading states
-   - Handle error cases
+
+   - Display products in a 3-column layout ✅
+   - Show product name and score ✅
+   - Implement loading states ✅
+   - Handle error cases ✅
 
 4. [Bonus] Add characteristic filtering:
-   - Create a UI for selecting multiple characteristics
-   - Update the product grid based on selected filters
-   - Maintain a clean and intuitive user experience
+   - Create a UI for selecting multiple characteristics ✅
+   - Update the product grid based on selected filters ✅
+   - Maintain a clean and intuitive user experience ✅
 
 ## Setup Instructions
 
 ### Prerequisites
+
 - Node.js (v16 or higher)
 - Yarn package manager
 - Git
@@ -85,17 +89,20 @@ Available characteristics: "Humane", "Locally Produced", "Healthy", "Plastic-Fre
 ### Getting Started
 
 1. Clone this repository to your local machine:
+
    ```bash
    git clone <repository-url>
    cd <repository-name>
    ```
 
 2. Set up and start the backend:
+
    ```bash
    cd api
    yarn install
    yarn start
    ```
+
    The API server will start on port 3005, and the JSON server on port 4000.
 
 3. In a new terminal, set up and start the frontend:
@@ -107,6 +114,7 @@ Available characteristics: "Humane", "Locally Produced", "Healthy", "Plastic-Fre
    The React development server will start on port 3000 and should automatically open in your default browser.
 
 ### Verifying Setup
+
 - Backend API should be accessible at: http://localhost:3005
 - JSON Server should be accessible at: http://localhost:4000/products and should return product data
   <details>
@@ -116,60 +124,43 @@ Available characteristics: "Humane", "Locally Produced", "Healthy", "Plastic-Fre
   [
     {
       "name": "Sprockets",
-      "characteristics": [
-        "Plastic-Free",
-        "Locally Produced"
-      ],
+      "characteristics": ["Plastic-Free", "Locally Produced"],
       "id": "dcea"
     },
     {
       "name": "Cogs",
-      "characteristics": [
-        "Plastic-Free",
-        "Wasteful"
-      ],
+      "characteristics": ["Plastic-Free", "Wasteful"],
       "id": "0f8f"
     },
     {
       "name": "Face Cream",
-      "characteristics": [
-        "Humane",
-        "Vegan",
-        "Locally Produced"
-      ],
+      "characteristics": ["Humane", "Vegan", "Locally Produced"],
       "id": "9880"
     },
     {
       "name": "Muskers",
-      "characteristics": [
-        "Wasteful",
-        "Unhealthy"
-      ],
+      "characteristics": ["Wasteful", "Unhealthy"],
       "id": "5015"
     },
     {
       "name": "Hand Sanitizer",
-      "characteristics": [
-        "Vegan",
-        "Humane"
-      ],
+      "characteristics": ["Vegan", "Humane"],
       "id": "04dd"
     },
     {
       "name": "Lettuce",
-      "characteristics": [
-        "Vegan",
-        "Humane",
-        "Healthy"
-      ],
+      "characteristics": ["Vegan", "Humane", "Healthy"],
       "id": "0219"
     }
   ]
   ```
+
   </details>
+
 - Frontend should be accessible at: http://localhost:3000
 
 ### Port Configuration
+
 - Express Server: 3005
 - JSON Server: 4000
 - React App: 3000
@@ -189,6 +180,7 @@ Available characteristics: "Humane", "Locally Produced", "Healthy", "Plastic-Fre
 ## Troubleshooting
 
 If you encounter port conflicts:
+
 1. Check if the ports (3000, 3005, 4000) are available
 2. Modify the port numbers in the respective configuration files
 3. Update the `BASE_API_URL` in the frontend accordingly

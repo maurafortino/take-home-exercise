@@ -12,11 +12,7 @@ app.use(cors());
 app.use(express.json());
 
 // Use the routes
-app.use("/", productsRouter);
-
-app.get("/products", productsRouter);
-
-app.get("/products/scores", productsRouter);
+app.use("/products", productsRouter);
 
 app.get("/", (_req, res) => {
   res.send("Hello from Express!");
